@@ -1,4 +1,6 @@
 -- DROP Tables
+DROP TABLE intervencaoquarto;
+DROP TABLE enderecos_pessoa;
 DROP TABLE enderecos;
 DROP TABLE concelho;
 DROP TABLE quarto;
@@ -93,8 +95,8 @@ CREATE TABLE concelho (
 
 CREATE TABLE enderecos (
     codPostal         INTEGER         CONSTRAINT pkCodPostal PRIMARY KEY,
-    nomeRua           VARCHAR (255)   CONSTRAINT nnNomeRua   NOT NULL,
-    idConcelho        INTEGER         CONSTRAINT nnIdConcelho NOT NULL,
+    nomeRua           VARCHAR(255)    CONSTRAINT nnNomeRua   NOT NULL,
+    idConcelho        INTEGER         CONSTRAINT nnIdConcelho NOT NULL
 );
 
 ALTER TABLE enderecos ADD CONSTRAINT fkConcelhoEnderecos FOREIGN KEY (idConcelho) REFERENCES concelho(idConcelho);
@@ -103,7 +105,7 @@ CREATE TABLE enderecos_pessoa (
     codPostal         INTEGER       CONSTRAINT nnCodPostalEnderecos_Pessoa NOT NULL,
     pessoaNif         INTEGER       CONSTRAINT nnPessoaNifEnderecos_Pessoa NOT NULL,   
     nrPorta           INTEGER       CONSTRAINT nnNrPorta                   NOT NULL,
-    andar             varchar(20)
+    andar             varchar(20),
     CONSTRAINT pkEnderecos_Pessoa  PRIMARY KEY (codPostal, pessoaNif)
 );
 
