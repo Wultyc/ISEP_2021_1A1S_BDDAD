@@ -1,4 +1,10 @@
 -- DROP Tables
+DROP TABLE estadoReserva;
+DROP TABLE fatura;
+DROP TABLE contaConsumos;
+DROP TABLE consumosFrigobar;
+DROP TABLE produtosFrigoBar;
+DROP TABLE limpeza;
 DROP TABLE intervencaoquarto;
 DROP TABLE enderecos_pessoa;
 DROP TABLE enderecos;
@@ -119,3 +125,63 @@ CREATE TABLE intervencaoQuarto (
     dataIntervencao DATE            CONSTRAINT nnDataIntervencao        NOT NULL
 );
 ALTER TABLE intervencaoQuarto ADD CONSTRAINT fkIntervencaoQuartoQuarto          FOREIGN KEY (idQuarto) REFERENCES quarto(idQuarto);
+
+CREATE TABLE limpeza (
+
+    nrFuncionario           INTEGER  CONSTRAINT nnNrFuncionario    NOT NULL,
+    intervencaoQuartoId     INTEGER CONSTRAINT  nnNrFuncionario    NOT NULL,
+
+     CONSTRAINT pkLimpeza  PRIMARY KEY (nrFuncionario, intervencaoQuartoId)
+);
+
+ALTER TABLE limpeza ADD CONSTRAINT fkLimpeza_nrFuncionario             FOREIGN KEY (nrFuncionario) REFERENCES camareira(nrFuncionario);
+ALTER TABLE limpeza ADD CONSTRAINT fkLimpezaIntervencaoQuarto FOREIGN KEY (intervencaoQuartoId) REFERENCES intervencaoQuarto(id);
+
+CREATE TABLE manutencao (
+
+   nrFuncionario           INTEGER CONSTRAINT   nnNrFuncionarioManutencao    NOT NULL,
+   intervencaoQuartoId     INTEGER CONSTRAINT   nnmanutencaoQuartoId         NOT NULL,
+   descricao               VARCHAR(255)         nnManutencaoDescricao        NOT NULL
+
+   CONSTRAINT pkManutencao  PRIMARY KEY (nrFuncionario, intervencaoQuartoId)
+);
+
+ALTER TABLE manutencao ADD  CONSTRAINT    fkManutencaonrFuncionario     FOREIGN KEY (nrFuncionario) REFERENCES funcionarioManuntencao(nrFuncionario);
+ALTER TABLE manutencao ADD  CONSTRAINT    fkManutencaoIntervencaoQuarto FOREIGN KEY    (intervencaoQuartoId) REFERENCES intervencaoQuarto(id);
+
+CREATE TABLE produtosFrigoBar (
+
+    idProduto           INTEGER CONSTRAINT pkProduto                 PRIMARY KEY,             
+    descricao           VARCHAR(255)       nnDescricao               NOT NULL,
+);
+
+CREATE TABLE consumosFrigobar (
+    idProdutoFrigobar       INTEGER   CONSTRAINT nnIdProdutoFrigobar      NOT NULL
+    nrContaConsumos         INTEGER   CONSTRAINT nnNrContaConsumos        NOT NULL
+    dataRegisto             DATE      CONSTRAINT nnDataRegisto            NOT NULL,
+    nrFuncionario           INTEGER   CONSTRAINT nnNrFuncionario          NOT NULL
+
+    CONSTRAINT pkConsumosFrigobar  PRIMARY KEY (idProdutoFrigobar, nrContaConsumos)
+);
+
+CREATE TABLE contaConsumos (
+
+    nrConta                 INTEGER  CONSTRAINT pkContaConsumos             PRIMARY KEY,
+    dataAbertura            DATE     CONSTRAINT nnDataAberturaContaConsumos NOT NULL
+);
+
+ALTER TABLE consumosFrigobar  CONSTRAINT fkConsumosFrigobarProdutosFrigobar   FOREIGN KEY (idProdutoFrigobar) REFERENCES produtosFrigoBar(idProduto);
+ALTER TABLE consumosFrigobar  CONSTRAINT fkConsumosFrigobarConstaConsumos     FOREIGN KEY (nrContaConsumos)   REFERENCES contaConsumos(nrConta);
+ALTER TABLE consumosFrigobar  CONSTRAINT fkConsumosFrigobarCamareira          FOREIGN KEY (nrFuncionario)     REFERENCES camareira(nrFuncionario);
+
+CREATE TABLE estadoReserva (
+
+    sigla       varchar(50) CONSTRAINT pkEstadoReserva          PRIMARY KEY,
+    descricao   varchar(50) CONSTRAINT nnDescricaoEstadoReserva NOT NULL
+);
+
+CREATE TABLE fatura (
+
+    id          INTEGER CONSTRAINT pkFatura PRIMARY KEY,
+    valor       FLOAT   CONSTRAINT nnValor  NOT NULL
+);
