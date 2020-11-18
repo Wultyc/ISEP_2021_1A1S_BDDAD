@@ -23,7 +23,7 @@ telefone	VARCHAR(255)	CONSTRAINT nnTelefone not null
 
 CREATE TABLE cliente (
     nrCliente   INTEGER    	CONSTRAINT pkCliente    PRIMARY KEY,
-    nifCliente  INTEGER
+    nifCliente  INTEGER     CONSTRAINT nnNifCliente NOT NULL
 );
 
 ALTER TABLE cliente ADD CONSTRAINT fkClientePessoa FOREIGN KEY (nifCliente) REFERENCES pessoa (nif);
@@ -31,7 +31,7 @@ ALTER TABLE cliente ADD CONSTRAINT fkClientePessoa FOREIGN KEY (nifCliente) REFE
 CREATE TABLE funcionario (
 idFuncionario		 	INTEGER     CONSTRAINT pkIdFuncionario PRIMARY KEY,
 nifFuncionario		 	INTEGER 	CONSTRAINT nnNifFuncionario NOT NULL,
-telefoneProfissional    VARCHAR 	(50) CONSTRAINT nnNelefoneProfissional NOT NULL
+telefoneProfissional    VARCHAR(50) CONSTRAINT nnNelefoneProfissional NOT NULL
 );
 
 ALTER TABLE funcionario ADD CONSTRAINT fkFuncionarioPessoa FOREIGN KEY (nifFuncionario) REFERENCES pessoa (nif);
@@ -63,23 +63,23 @@ idFuncionario	INTEGER     CONSTRAINT pkIdFuncionarioManuntencao PRIMARY KEY
 ALTER TABLE funcionarioManuntencao ADD CONSTRAINT fkFuncionarioFuncionarioManuntencao FOREIGN KEY (idFuncionario) REFERENCES funcionario(idFuncionario);
 
 CREATE TABLE quarto (
-    idQuarto            INTEGER     CONSTRAINT pkIdQuarto PRIMARY KEY,
-    nrQuarto            INTEGER,
-    nrAndar             INTEGER,
-    tipoQuarto          INTEGER,
-    lotacao             INTEGER
+    idQuarto            INTEGER     CONSTRAINT pkIdQuarto   PRIMARY KEY,
+    nrQuarto            INTEGER     CONSTRAINT nnNrQuarto   NOT NULL,
+    nrAndar             INTEGER     CONSTRAINT nnNrAndar    NOT NULL,
+    tipoQuarto          INTEGER     CONSTRAINT nnTipoQuarto NOT NULL,
+    lotacao             INTEGER     CONSTRAINT nnLotacao    NOT NULL
 );
 
 CREATE TABLE andar (
     nrAndar             INTEGER             CONSTRAINT pkNrAndar PRIMARY KEY,
-    nome                VARCHAR(255)
+    nome                VARCHAR(255)        CONSTRAINT nnNomeAndar NOT NULL
 );
 
 ALTER TABLE quarto ADD CONSTRAINT fkQuartoAndar FOREIGN KEY (nrAndar) REFERENCES andar(nrAndar);
 
 CREATE TABLE tipoQuarto (
-    idTipoQuarto        INTEGER     CONSTRAINT pkIdTipoQuarto PRIMARY KEY,
-    descricao           VARCHAR(255)
+    idTipoQuarto        INTEGER             CONSTRAINT pkIdTipoQuarto PRIMARY KEY,
+    descricao           VARCHAR(255)        CONSTRAINT nnDescricao  NOT NULL 
 );
 
 ALTER TABLE quarto ADD CONSTRAINT fkQuartoTipoQuarto FOREIGN KEY (tipoQuarto) REFERENCES tipoQuarto(idTipoQuarto);
@@ -87,15 +87,33 @@ ALTER TABLE quarto ADD CONSTRAINT fkQuartoTipoQuarto FOREIGN KEY (tipoQuarto) RE
 CREATE TABLE concelho (
 
     idConcelho        INTEGER         CONSTRAINT pkIdConcelho PRIMARY KEY,
-    nome              VARCHAR(50),
-    distrito          VARCHAR(50)  
+    nome              VARCHAR(50)     CONSTRAINT nnNomeConcelho NOT NUll,
+    distrito          VARCHAR(50)     CONSTRAINT nnDistrito     NOT NULL
 );
 
 CREATE TABLE enderecos (
     codPostal         INTEGER         CONSTRAINT pkCodPostal PRIMARY KEY,
-    nomeRua           VARCHAR (255),
-    idConcelho        INTEGER,
-    pessoaNif         INTEGER
+    nomeRua           VARCHAR (255)   CONSTRAINT nnNomeRua   NOT NULL,
+    idConcelho        INTEGER         CONSTRAINT nnIdConcelho NOT NULL,
 );
 
 ALTER TABLE enderecos ADD CONSTRAINT fkConcelhoEnderecos FOREIGN KEY (idConcelho) REFERENCES concelho(idConcelho);
+
+CREATE TABLE enderecos_pessoa (
+    codPostal         INTEGER       CONSTRAINT nnCodPostalEnderecos_Pessoa NOT NULL,
+    pessoaNif         INTEGER       CONSTRAINT nnPessoaNifEnderecos_Pessoa NOT NULL,   
+    nrPorta           INTEGER       CONSTRAINT nnNrPorta                   NOT NULL,
+    andar             varchar(20)
+    CONSTRAINT pkEnderecos_Pessoa  PRIMARY KEY (codPostal, pessoaNif)
+);
+
+ALTER TABLE enderecos_pessoa ADD CONSTRAINT fkEnderecos_PessoaPessoa             FOREIGN KEY (pessoaNif) REFERENCES pessoa(nif);
+ALTER TABLE enderecos_pessoa ADD CONSTRAINT fkEnderecos_PessoaEnderecosCodPostal FOREIGN KEY (codPostal) REFERENCES enderecos(codPostal);
+
+CREATE TABLE intervencaoQuarto (
+
+    id              INTEGER         CONSTRAINT pkIntervencaoQuarto PRIMARY KEY,
+    idQuarto        INTEGER         CONSTRAINT nnidQuartoIntervencao    NOT NULL,
+    dataIntervencao DATE            CONSTRAINT nnDataIntervencao        NOT NULL
+);
+ALTER TABLE intervencaoQuarto ADD CONSTRAINT fkIntervencaoQuartoQuarto          FOREIGN KEY (idQuarto) REFERENCES quarto(idQuarto);
