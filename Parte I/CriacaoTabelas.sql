@@ -182,3 +182,54 @@ CREATE TABLE fatura (
     id          INTEGER CONSTRAINT pkFatura PRIMARY KEY,
     valor       FLOAT   CONSTRAINT nnValor  NOT NULL
 );
+
+
+Insert into Pessoa(nif, nome, email, telefone) values(10,'Diogo','d@gmail','1234567');
+Insert into Pessoa(nif, nome, email, telefone) values(20,'Joao','j@gmail','1234568');
+Insert into Pessoa(nif, nome, email, telefone) values(30,'Goncalo','g@gmail','1234569');
+Insert into Pessoa(nif, nome, email, telefone) values(40,'Martim','m@gmail','1234570');
+Insert into Pessoa(nif, nome, email, telefone) values(50,'Videncio','d@gmail','1234547');
+Insert into Pessoa(nif, nome, email, telefone) values(60,'Maria','mar@gmail','1235568');
+Insert into Pessoa(nif, nome, email, telefone) values(70,'Ze','z@gmail','1233569');
+Insert into Pessoa(nif, nome, email, telefone) values(80,'Manel','man@gmail','1224570');
+Insert into Cliente(nrCliente, nifCliente) values(100, 10);
+Insert into Cliente(nrCliente, nifCliente) values(200, 20);
+Insert into Funcionario(nrFuncionario, nifFuncionario, telefoneProfissional) values(150, 30, '987654321');
+Insert into Funcionario(nrFuncionario, nifFuncionario, telefoneProfissional) values(250, 40, '977654321');
+Insert into Funcionario(nrFuncionario, nifFuncionario, telefoneProfissional) values(350, 30, '987654321');
+Insert into Funcionario(nrFuncionario, nifFuncionario, telefoneProfissional) values(450, 40, '977654321');
+Insert into Camareira(nrFuncionario) values(150);
+Insert into Camareira(nrFuncionario) values(350);
+Insert into funcionarioManuntencao (nrFuncionario) values (250);
+Insert into funcionarioManuntencao (nrFuncionario) values (450);
+Insert into andar (nrAndar, nome) values (1, 'Andar1');
+Insert into andar (nrAndar, nome) values (2, 'Andar2');
+Insert into andar (nrAndar, nome) values (3, 'Andar3');
+Insert into tipoQuarto (idTipoQuarto, descricao) values(1,'Single');
+Insert into tipoQuarto (idTipoQuarto, descricao) values(2,'Twin');
+Insert into tipoQuarto (idTipoQuarto, descricao) values(3,'Superior');
+Insert into tipoQuarto (idTipoQuarto, descricao) values(4,'Suite');
+Insert into Quarto(idQuarto, nrQuarto,nrAndar,tipoQuarto,lotacao) values(1000, 1001, 1, 1, 6);
+Insert into Quarto(idQuarto, nrQuarto,nrAndar,tipoQuarto,lotacao) values(2000, 2001, 2, 2, 6);
+Insert into Quarto(idQuarto, nrQuarto,nrAndar,tipoQuarto,lotacao) values(3000, 3001, 3, 3, 6);
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao) values(1500, 1000, '2020-11-18');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao) values(2500, 2000, '2020-11-17');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao) values(3500, 2000, '2020-11-16');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao) values(4500, 3000, '2020-11-17');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao) values(5500, 1000, '2020-11-15');
+Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(250,1500,'Manutencao 1');
+Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(450,2500,'Manutencao 2');
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId) values(150,3500);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,4500);
+Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Porto');
+Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
+Insert into concelho (idConcelho ,nome,distrito) values(3200,'Concelho 3', 'Lisboa');
+Insert into enderecos (codPostal,nomeRua,idConcelho) values(1300,'Rua 1', 1200);
+Insert into enderecos (codPostal,nomeRua,idConcelho) values(2300,'Rua 2', 2200);
+Insert into enderecos (codPostal,nomeRua,idConcelho) values(3300,'Rua 3', 3200);
+
+
+/*Ex 1 a)*/
+
+select nrFuncionario from (select nrFuncionario from IntervencaoQuarto iq,Manutencao man where iq.id = man.intervencaoQuartoId 
+ and (sysdate-2) < iq.dataIntervencao);
