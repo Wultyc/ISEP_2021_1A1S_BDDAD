@@ -402,8 +402,8 @@ Insert into Quarto(idQuarto, nrQuarto,nrAndar,tipoQuarto,lotacao) values(100059,
 Insert into Quarto(idQuarto, nrQuarto,nrAndar,tipoQuarto,lotacao) values(100060, 1060, 2, 3,6);
 
 
-Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(1500, 100001, '2020-11-18', 'Y');
-Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(2500, 100002, '2020-11-17', 'Y');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(1500, 100001, '2020-11-20', 'Y');
+Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(2500, 100002, '2020-11-20', 'N');
 Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(3500, 100003, '2020-11-16', 'Y');
 Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(4500, 100004, '2020-11-17', 'Y');
 Insert into IntervencaoQuarto(id, idQuarto, dataIntervencao, concluido) values(5500, 100005, '2020-11-15', 'Y');
@@ -583,5 +583,7 @@ Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 300
 Insert into Quarto_Reserva (IdQuartoReserva,ReservaId) values(100031, 15001);
 /*Ex 1 a)*/
 
+
 (select nrFuncionario from IntervencaoQuarto iq,Manutencao man where iq.id = man.intervencaoQuartoId 
  and (sysdate-2) < iq.dataIntervencao and iq.concluido ='Y');
+
