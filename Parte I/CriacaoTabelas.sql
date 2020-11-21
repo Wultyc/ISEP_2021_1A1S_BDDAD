@@ -80,8 +80,7 @@ nrFuncionario	INTEGER     CONSTRAINT pkNrFuncionarioManuntencao PRIMARY KEY
 ALTER TABLE funcionarioManuntencao ADD CONSTRAINT fkFuncionarioFuncionarioManuntencao FOREIGN KEY (nrFuncionario) REFERENCES funcionario(nrFuncionario);
 
 CREATE TABLE quarto (
-    idQuarto            INTEGER     CONSTRAINT pkIdQuarto   PRIMARY KEY,
-    nrQuarto            INTEGER     CONSTRAINT nnNrQuarto   NOT NULL,
+    nrQuarto            INTEGER     CONSTRAINT pkIdQuarto   PRIMARY KEY,
     nrAndar             INTEGER     CONSTRAINT nnNrAndar    NOT NULL,
     tipoQuarto          INTEGER     CONSTRAINT nnTipoQuarto NOT NULL,
     lotacao             INTEGER     CONSTRAINT nnLotacao    NOT NULL
