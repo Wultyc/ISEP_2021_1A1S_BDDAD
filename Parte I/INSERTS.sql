@@ -300,18 +300,18 @@ Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 300
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3600);
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3700);
 
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1031, 15001);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1031, 15004);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1031, 15006);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1031, 15011);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15001);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15004);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15006);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15011);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15002);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15003);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15007);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15015);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1025, 15005);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2047, 15008);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2013, 15009);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2033, 15009);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1020, 15010);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1016, 15012);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2016, 15013);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2001, 15014);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2056, 15013);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2051, 15014);
