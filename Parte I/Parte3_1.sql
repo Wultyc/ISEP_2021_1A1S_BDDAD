@@ -1,29 +1,40 @@
-SELECT andar_of_max         AS nrAndar, 
-       tipoquarto_internal  AS TipoQuartoId, 
-       cnt_of_max           AS Cnt 
-FROM   (SELECT nrandar  AS andar_of_max, 
-               Max(cnt) AS cnt_of_max 
-        FROM   (SELECT nrandar, 
-                       Count(*) AS cnt 
-                FROM   quarto_reserva 
-                       JOIN reserva 
-                         ON quarto_reserva.reservaid = reserva.id 
-                       JOIN quarto 
-                         ON quarto_reserva.nrquartoreserva = quarto.nrquarto 
-                WHERE  reserva.estadoreservasigla <> 'cancelada' 
-                GROUP  BY tipoquarto, 
-                          nrandar) 
-        GROUP  BY nrandar) mytab
-       JOIN (SELECT nrandar    AS andar_internal, 
-                         tipoquarto AS tipoQuarto_internal, 
-                         Count(*)   AS cnt 
-                  FROM   quarto_reserva 
-                         JOIN reserva 
-                           ON quarto_reserva.reservaid = reserva.id 
-                         JOIN quarto 
-                           ON quarto_reserva.nrquartoreserva = quarto.nrquarto 
-                  WHERE  reserva.estadoreservasigla <> 'cancelada' 
-                  GROUP  BY tipoquarto, 
-                            nrandar) 
-              ON andar_of_max = andar_internal 
-                 AND cnt_of_max = cnt 
+WITH count_tipoQuarto_per_floor AS (
+    SELECT 
+        nrandar, 
+        tipoquarto, 
+        Count(*)   AS cnt 
+    FROM   quarto_reserva 
+         JOIN reserva 
+           ON quarto_reserva.reservaid = reserva.id 
+         JOIN quarto 
+           ON quarto_reserva.nrquartoreserva = quarto.nrquarto 
+    WHERE  reserva.estadoreservasigla <> 'cancelada' 
+    GROUP  BY tipoquarto, 
+            nrandar
+),
+
+max_per_floor AS (
+    SELECT
+        max(cnt) AS cnt,
+        nrandar
+    FROM count_tipoQuarto_per_floor
+    GROUP BY NRANDAR
+),
+
+max_per_type_per_floor AS (
+    SELECT
+        count_tipoQuarto_per_floor.*
+    FROM max_per_floor
+        JOIN count_tipoQuarto_per_floor
+            ON      count_tipoQuarto_per_floor.nrandar = max_per_floor.nrandar
+                AND count_tipoQuarto_per_floor.cnt = max_per_floor.cnt
+)
+
+SELECT
+    max_per_type_per_floor.nrandar,
+    max_per_type_per_floor.tipoquarto,
+    tipoquarto.descricao,
+    max_per_type_per_floor.cnt
+FROM max_per_type_per_floor
+    JOIN tipoQuarto
+        ON tipoQuarto.idTipoQuarto = max_per_type_per_floor.tipoquarto;
