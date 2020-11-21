@@ -8,7 +8,8 @@ WITH count_tipoQuarto_per_floor AS (
            ON quarto_reserva.reservaid = reserva.id 
          JOIN quarto 
            ON quarto_reserva.nrquartoreserva = quarto.nrquarto 
-    WHERE  reserva.estadoreservasigla <> 'cancelada' 
+    WHERE   reserva.estadoreservasigla <> 'cancelada' 
+        AND quarto.tipoquarto <> (SELECT idTipoQuarto FROM tipoquarto WHERE descricao = 'Single')
     GROUP  BY tipoquarto, 
             nrandar
 ),
@@ -18,6 +19,7 @@ max_per_floor AS (
         max(cnt) AS cnt,
         nrandar
     FROM count_tipoQuarto_per_floor
+    WHERE cnt > 2
     GROUP BY NRANDAR
 ),
 
