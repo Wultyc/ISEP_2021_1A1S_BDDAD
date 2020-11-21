@@ -248,9 +248,3 @@ CREATE TABLE Quarto_Reserva (
 ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservaIdQuartoReserva FOREIGN KEY (IdQuartoReserva) REFERENCES Quarto(IdQuarto);
 ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservaReservaId FOREIGN KEY (ReservaId) REFERENCES Reserva(id);
 
-/*Ex 1 a)*/
-
-
-(select nrFuncionario from IntervencaoQuarto iq,Manutencao man where iq.id = man.intervencaoQuartoId 
- and (sysdate-2) < iq.dataIntervencao and iq.concluido ='Y');
-
