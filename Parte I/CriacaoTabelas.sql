@@ -1,4 +1,3 @@
-
 DROP TABLE consumosFrigobar CASCADE CONSTRAINTS;
 DROP TABLE contaConsumos CASCADE CONSTRAINTS;
 DROP TABLE produtosFrigoBar CASCADE CONSTRAINTS;
@@ -80,7 +79,7 @@ nrFuncionario	INTEGER     CONSTRAINT pkNrFuncionarioManuntencao PRIMARY KEY
 ALTER TABLE funcionarioManuntencao ADD CONSTRAINT fkFuncionarioFuncionarioManuntencao FOREIGN KEY (nrFuncionario) REFERENCES funcionario(nrFuncionario);
 
 CREATE TABLE quarto (
-    nrQuarto            INTEGER     CONSTRAINT pkIdQuarto   PRIMARY KEY,
+    nrQuarto            INTEGER     CONSTRAINT pknrQuarto   PRIMARY KEY,
     nrAndar             INTEGER     CONSTRAINT nnNrAndar    NOT NULL,
     tipoQuarto          INTEGER     CONSTRAINT nnTipoQuarto NOT NULL,
     lotacao             INTEGER     CONSTRAINT nnLotacao    NOT NULL
@@ -110,6 +109,7 @@ CREATE TABLE concelho (
 CREATE TABLE enderecos (
     codPostal         INTEGER         CONSTRAINT pkCodPostal PRIMARY KEY,
     nomeRua           VARCHAR(255)    CONSTRAINT nnNomeRua   NOT NULL,
+    localidade        VARCHAR(255)    CONSTRAINT nnLocalidade   NOT NULL,
     idConcelho        INTEGER         CONSTRAINT nnIdConcelho NOT NULL
 );
 
@@ -129,11 +129,11 @@ ALTER TABLE enderecos_pessoa ADD CONSTRAINT fkEnderecos_PessoaEnderecosCodPostal
 CREATE TABLE intervencaoQuarto (
 
     id              INTEGER         CONSTRAINT pkIntervencaoQuarto PRIMARY KEY,
-    idQuarto        INTEGER         CONSTRAINT nnidQuartoIntervencao    NOT NULL,
+    nrQuarto        INTEGER         CONSTRAINT nnnrQuartoIntervencao    NOT NULL,
     dataIntervencao DATE            CONSTRAINT nnDataIntervencao        NOT NULL,
     concluido       Char(1)         CONSTRAINT nnConcluido              NOT NULL
 );
-ALTER TABLE intervencaoQuarto ADD CONSTRAINT fkIntervencaoQuartoQuarto          FOREIGN KEY (idQuarto) REFERENCES quarto(idQuarto);
+ALTER TABLE intervencaoQuarto ADD CONSTRAINT fkIntervencaoQuartoQuarto          FOREIGN KEY (nrQuarto) REFERENCES quarto(nrQuarto);
 
 CREATE TABLE limpeza (
     nrFuncionario           INTEGER     CONSTRAINT  nnNrFuncionario         NOT NULL,
@@ -240,10 +240,10 @@ ALTER TABLE PrecoReserva ADD CONSTRAINT fkPrecoReservaTipoQuartoId  FOREIGN KEY 
 ALTER TABLE PrecoReserva ADD CONSTRAINT fkPrecoReservaEpocaAnoId FOREIGN KEY (EpocaAnoId) REFERENCES EpocaAno(id);
 
 CREATE TABLE Quarto_Reserva (
-    IdQuartoReserva       INTEGER CONSTRAINT nnIdQuartoReserva NOT NULL,
+    nrQuartoReserva       INTEGER CONSTRAINT nnnrQuartoReserva NOT NULL,
     ReservaId         INTEGER CONSTRAINT nnReservaId NOT NULL,
-    CONSTRAINT pkPrecoQuarto_Reserva  PRIMARY KEY (IdQuartoReserva, ReservaId)
+    CONSTRAINT pkPrecoQuarto_Reserva  PRIMARY KEY (nrQuartoReserva, ReservaId)
 );
-ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservaIdQuartoReserva FOREIGN KEY (IdQuartoReserva) REFERENCES Quarto(IdQuarto);
+ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservanrQuartoReserva FOREIGN KEY (nrQuartoReserva) REFERENCES Quarto(nrQuarto);
 ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservaReservaId FOREIGN KEY (ReservaId) REFERENCES Reserva(id);
 

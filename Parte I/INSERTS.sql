@@ -152,11 +152,11 @@ Insert into Quarto(nrQuarto, nrAndar,tipoQuarto,lotacao) values(1059, 2, 3,6);
 Insert into Quarto(nrQuarto, nrAndar,tipoQuarto,lotacao) values(1060, 2, 3,6);
 
 
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(1500, 100001, '2020-11-20', 'Y');
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(2500, 100002, '2020-11-20', 'N');
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(3500, 100003, '2020-11-16', 'Y');
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(4500, 100004, '2020-11-17', 'Y');
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(5500, 100005, '2020-11-15', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(1500, 1001, '2020-11-20', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(2500, 1002, '2020-11-20', 'N');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(3500, 1003, '2020-11-16', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(4500, 1004, '2020-11-17', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(5500, 1005, '2020-11-15', 'Y');
 
 Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(250,1500,'Manutencao 1');
 Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(450,2500,'Manutencao 2');
@@ -168,9 +168,9 @@ Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Port
 Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
 Insert into concelho (idConcelho ,nome,distrito) values(3200,'Concelho 3', 'Lisboa');
 
-Insert into enderecos (codPostal,nomeRua,idConcelho) values(1300,'Rua 1', 1200);
-Insert into enderecos (codPostal,nomeRua,idConcelho) values(2300,'Rua 2', 2200);
-Insert into enderecos (codPostal,nomeRua,idConcelho) values(3300,'Rua 3', 3200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(1300,'Rua 1','Localidade X',1200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',2200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(3300,'Rua 3','Localidade Z',3200);
 
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 10, 107, 1);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 20, 207, 2);
@@ -330,4 +330,4 @@ Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 300
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3600);
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3700);
 
-Insert into Quarto_Reserva (IdQuartoReserva,ReservaId) values(100031, 15001);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1031, 15001);
