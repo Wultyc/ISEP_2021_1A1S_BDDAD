@@ -167,10 +167,13 @@ Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,4500);
 Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Porto');
 Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
 Insert into concelho (idConcelho ,nome,distrito) values(3200,'Concelho 3', 'Lisboa');
+Insert into concelho (idConcelho ,nome,distrito) values(5000,'Concelho 4', 'Vila Real');
 
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(1300,'Rua 1','Localidade X',1200);
-Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',2200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',5000);
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(3300,'Rua 3','Localidade Z',3200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4420,'Largo Pereira','Localidade do Cosme',1200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4425,'Largo Souto','Localidade do Mar',1200);
 
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 10, 107, 1);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 20, 207, 2);
@@ -181,6 +184,9 @@ Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 30
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 10, 107, 1);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 20, 207, 2);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 30, 307, 3);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4425, 170, 23, 0);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4420, 240, 23, 0);
+
 
 Insert into epocaAno(id, descricao, dataInicio, dataFim) values(10001, 'Epoca Baixa','2019-11-01','2020-03-31');
 Insert into epocaAno(id, descricao, dataInicio, dataFim) values(20001, 'Epoca Media','2020-04-01','2020-05-31');
