@@ -73,10 +73,12 @@ ALTER TABLE funcionarioRececao ADD CONSTRAINT fkFuncionarioFuncionarioRececao FO
 
 
 CREATE TABLE funcionarioManuntencao (
-nrFuncionario	INTEGER     CONSTRAINT pkNrFuncionarioManuntencao PRIMARY KEY
+nrFuncionario	INTEGER     CONSTRAINT pkNrFuncionarioManuntencao PRIMARY KEY,
+supervisor  	INTEGER
 );
 
 ALTER TABLE funcionarioManuntencao ADD CONSTRAINT fkFuncionarioFuncionarioManuntencao FOREIGN KEY (nrFuncionario) REFERENCES funcionario(nrFuncionario);
+ALTER TABLE funcionarioManuntencao ADD CONSTRAINT fkSupervisorFuncionarioManuntencao FOREIGN KEY (supervisor) REFERENCES funcionarioManuntencao(nrFuncionario);
 
 CREATE TABLE quarto (
     nrQuarto            INTEGER     CONSTRAINT pknrQuarto   PRIMARY KEY,

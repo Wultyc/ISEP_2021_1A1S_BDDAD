@@ -77,7 +77,7 @@ Insert into Camareira(nrFuncionario) values(750);
 Insert into Camareira(nrFuncionario) values(950);
 
 Insert into funcionarioManuntencao (nrFuncionario) values (250);
-Insert into funcionarioManuntencao (nrFuncionario) values (450);
+Insert into funcionarioManuntencao (nrFuncionario, supervisor) values (450, 250);
 
 Insert into andar (nrAndar, nome) values (1, 'Andar1');
 Insert into andar (nrAndar, nome) values (2, 'Andar2');
