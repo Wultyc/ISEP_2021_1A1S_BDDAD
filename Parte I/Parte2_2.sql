@@ -40,7 +40,6 @@ WITH quarto_tipo_avg AS (
   GROUP BY limpeza.nrfuncionario, EXTRACT (MONTH FROM intervencaoquarto.dataintervencao)
     )
 
-
 SELECT
     limpeza_count,
     limpeza_month,

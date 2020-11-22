@@ -178,7 +178,7 @@ Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,28000);
 Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Porto');
 Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
 Insert into concelho (idConcelho ,nome,distrito) values(3200,'Concelho 3', 'Lisboa');
-Insert into concelho (idConcelho ,nome,distrito) values(5000,'Concelho 4', 'Vila Real');
+Insert into concelho (idConcelho ,nome,distrito) values(5000,'Vila Real', 'Vila Real');
 
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(1300,'Rua 1','Localidade X',1200);
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',5000);

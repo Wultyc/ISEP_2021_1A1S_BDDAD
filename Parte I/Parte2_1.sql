@@ -24,10 +24,7 @@
 --    WHERE concelho.distrito = 'Vila Real'))
 --)
 ----|---------------------------------Using with to improve the above query to not have 'Jose Silva' included--  FINAL QUERY FOR PART 2 -- EXERCISE 1-----------------------------------------|--
---
---
---
---|------------------------------------------------------------------------------------------------------------------------------------------------------------------|--
+
 WITH quartos_cliente AS (
 SELECT nrQuartoReserva , pessoa.nif AS nif FROM quarto_reserva
 INNER JOIN reserva on quarto_reserva.reservaid = reserva.id 
@@ -38,7 +35,7 @@ AND cliente.nifCliente IN
 (SELECT enderecos_pessoa.pessoaNif FROM enderecos_pessoa  
     INNER JOIN enderecos on enderecos_pessoa.codPostal = enderecos.codPostal
     INNER JOIN concelho on enderecos.idConcelho = concelho.idconcelho
-    WHERE concelho.distrito = 'Vila Real'))    
+    WHERE concelho.nome = 'Vila Real'))    
 SELECT pessoa.nome, enderecos.localidade, concelho.nome AS concelho
 FROM pessoa
 INNER JOIN cliente              ON cliente.nifCliente = pessoa.nif
