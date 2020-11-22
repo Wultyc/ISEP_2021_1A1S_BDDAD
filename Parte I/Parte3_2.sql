@@ -64,4 +64,5 @@ WHERE   quarto.tipoQuarto = (SELECT idTipoQuarto FROM TipoQuarto WHERE descricao
             
             )
         )
-    AND ConsumosFrigobar.idProdutoFrigobar IN (SELECT IDPRODUTO FROM produtos_mais_consumidos);
+    AND ConsumosFrigobar.idProdutoFrigobar IN (SELECT IDPRODUTO FROM produtos_mais_consumidos)
+ORDER BY ContaConsumos.VALOR DESC;
