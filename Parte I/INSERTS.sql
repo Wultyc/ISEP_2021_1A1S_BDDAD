@@ -264,9 +264,10 @@ Insert into consumosFrigobar (idProdutoFrigobar,nrContaConsumos ,dataRegisto,nrF
 Insert into consumosFrigobar (idProdutoFrigobar,nrContaConsumos ,dataRegisto,nrFuncionario) values(78000,11012, '2020-01-07', 950);
 
 
+Insert into EstadoReserva(sigla, descricao) values('reservada','Reserva feita');
 Insert into EstadoReserva(sigla, descricao) values('ativa','Reserva ativa');
 Insert into EstadoReserva(sigla, descricao) values('cancelada','Reserva cancelada');
-Insert into EstadoReserva(sigla, descricao) values('finalizada','Reserva cumprida');
+Insert into EstadoReserva(sigla, descricao) values('finalizada','Reserva finalizada');
 
 Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15001, 100,  '2020-07-18', '2020-07-19', '2020-07-27','finalizada',5, 11001, 1000, 100);
 Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15002, 400,  '2020-07-18', '2020-07-19', '2020-07-27','finalizada',5, 11002, 1000, 100);
