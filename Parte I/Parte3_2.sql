@@ -14,15 +14,6 @@ WITH produtos_mais_consumidos AS (
 SELECT
     Pessoa.*,
     Reserva.id,
-    Reserva.DATARESERVA,
-    Reserva.DATAINICIO,
-    Reserva.DATAFIM,
-    Reserva.ESTADORESERVASIGLA,
-    Reserva.NRPESSOAS,
-    Reserva.NRCONTACONSUMOS,
-    Reserva.CUSTORESERVA,
-    Reserva.CUSTOCANCELAMENTO,
-    ContaConsumos.DATAABERTURA,
     ContaConsumos.VALOR
 FROM Cliente
     JOIN Pessoa ON Cliente.nifCliente = Pessoa.nif
