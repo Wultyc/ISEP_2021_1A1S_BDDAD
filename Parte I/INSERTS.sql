@@ -167,10 +167,13 @@ Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,4500);
 Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Porto');
 Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
 Insert into concelho (idConcelho ,nome,distrito) values(3200,'Concelho 3', 'Lisboa');
+Insert into concelho (idConcelho ,nome,distrito) values(5000,'Concelho 4', 'Vila Real');
 
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(1300,'Rua 1','Localidade X',1200);
-Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',2200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(2300,'Rua 2','Localidade Y',5000);
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(3300,'Rua 3','Localidade Z',3200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4420,'Largo Pereira','Localidade do Cosme',1200);
+Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4425,'Largo Souto','Localidade do Mar',1200);
 
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 10, 107, 1);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 20, 207, 2);
@@ -181,6 +184,9 @@ Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 30
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 10, 107, 1);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 20, 207, 2);
 Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 30, 307, 3);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4425, 170, 23, 0);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4420, 240, 23, 0);
+
 
 Insert into epocaAno(id, descricao, dataInicio, dataFim) values(10001, 'Epoca Baixa','2019-11-01','2020-03-31');
 Insert into epocaAno(id, descricao, dataInicio, dataFim) values(20001, 'Epoca Media','2020-04-01','2020-05-31');
@@ -258,25 +264,26 @@ Insert into consumosFrigobar (idProdutoFrigobar,nrContaConsumos ,dataRegisto,nrF
 Insert into consumosFrigobar (idProdutoFrigobar,nrContaConsumos ,dataRegisto,nrFuncionario) values(78000,11012, '2020-01-07', 950);
 
 
+Insert into EstadoReserva(sigla, descricao) values('reservada','Reserva feita');
 Insert into EstadoReserva(sigla, descricao) values('ativa','Reserva ativa');
 Insert into EstadoReserva(sigla, descricao) values('cancelada','Reserva cancelada');
-Insert into EstadoReserva(sigla, descricao) values('finalizada','Reserva cumprida');
+Insert into EstadoReserva(sigla, descricao) values('finalizada','Reserva finalizada');
 
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15001, 100, DATE  '2020-07-18',DATE  '2020-07-19',DATE  '2020-07-27','finalizada',5, 11001, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15002, 400, DATE  '2020-07-18',DATE  '2020-07-19',DATE  '2020-07-27','finalizada',5, 11002, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15003, 200, DATE  '2020-07-18',DATE  '2020-07-19',DATE  '2020-07-27','cancelada',5, 11003, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15004, 300, DATE  '2020-07-18', DATE '2020-07-19',DATE  '2020-07-27','finalizada',5, 11004, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15005, 400, DATE  '2020-07-18',DATE  '2020-07-19',DATE  '2020-07-27','cancelada',5, 11005, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15006, 500, DATE  '2020-05-18',DATE  '2020-05-19',DATE  '2020-05-27','finalizada',5, 11006, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15007, 600, DATE  '2020-05-18',DATE  '2020-05-19',DATE  '2020-05-27','finalizada',5, 11007, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15008, 700, DATE  '2020-05-18',DATE  '2020-05-19',DATE  '2020-05-27','finalizada',5, 11008, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15009, 400, DATE  '2020-05-18',DATE  '2020-05-19',DATE  '2020-05-27','ativa',5, 11002, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15010, 400, DATE  '2020-05-18',DATE  '2020-05-19',DATE  '2020-05-27','finalizada',5, 11002, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15011, 800, DATE  '2020-02-18',DATE  '2020-02-19',DATE  '2020-02-27','finalizada',5, 11009, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15012, 900, DATE  '2020-02-18',DATE  '2020-02-19',DATE  '2020-02-27','cancelada',5, 11011, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15013, 1100,DATE  '2020-02-18',DATE  '2020-02-19',DATE  '2020-02-27','ativa',5, 11012, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15014, 1200,DATE  '2020-02-18',DATE  '2020-02-19',DATE  '2020-02-27','cancelada',5, 11013, 1000, 100);
-Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15015, 1400, DATE '2020-02-18',DATE  '2020-02-19',DATE  '2020-02-27','finalizada',5, 11014, 1000, 100);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15001, 100,  '2020-07-18', '2020-07-19', '2020-07-27','finalizada',5, 11001, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15002, 400,  '2020-07-18', '2020-07-19', '2020-07-27','finalizada',5, 11002, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15003, 200,  '2020-07-18', '2020-07-19', '2020-07-27','cancelada',5, 11003, 0, 100);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15004, 300,  '2020-07-18', '2020-07-19', '2020-07-27','finalizada',5, 11004, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15005, 400,  '2020-07-18', '2020-07-19', '2020-07-27','cancelada',5, 11005, 0, 100);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15006, 500,  '2020-05-18', '2020-05-19', '2020-05-27','finalizada',5, 11006, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15007, 600,  '2020-05-18', '2020-05-19', '2020-05-27','finalizada',5, 11007, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15008, 700,  '2020-05-18', '2020-05-19', '2020-05-27','finalizada',5, 11008, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15009, 400,  '2020-05-18', '2020-05-19', '2020-05-27','ativa',5, 11002, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15010, 400,  '2020-05-18', '2020-05-19', '2020-05-27','finalizada',5, 11002, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15011, 800,  '2020-02-18', '2020-02-19', '2020-02-27','finalizada',5, 11009, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15012, 900,  '2020-02-18', '2020-02-19', '2020-02-27','cancelada',5, 11011, 0, 100);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15013, 1100, '2020-02-18', '2020-02-19', '2020-02-27','ativa',5, 11012, 1000, 0);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15014, 1200, '2020-02-18', '2020-02-19', '2020-02-27','cancelada',5, 11013, 0, 100);
+Insert into Reserva (id, nrCliente  ,dataReserva , dataInicio, dataFim, EstadoReservaSigla, nrPessoas, nrContaConsumos, custoReserva, custoCancelamento) values (15015, 1400, '2020-02-18', '2020-02-19', '2020-02-27','finalizada',5, 11014, 1000, 0);
 
 Insert into MeioPagamento( descricao) values ('Pagamento por Dinheiro');
 Insert into MeioPagamento( descricao) values ('Pagamento por Cartao');
@@ -307,7 +314,7 @@ Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15011);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15002);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15003);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15007);
-Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2048, 15015);
+Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1022, 15015);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1025, 15005);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2047, 15008);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2033, 15009);
