@@ -13,8 +13,8 @@ WITH produtos_mais_consumidos AS (
 
 SELECT
     Pessoa.*,
-    Reserva.id,
-    ContaConsumos.VALOR
+    Reserva.id AS ReservaID,
+    ContaConsumos.VALOR AS ValorConsumos
 FROM Cliente
     JOIN Pessoa ON Cliente.nifCliente = Pessoa.nif
     JOIN Reserva ON Reserva.nrCliente = Cliente.nrCliente
