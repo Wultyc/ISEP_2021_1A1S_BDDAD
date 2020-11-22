@@ -39,4 +39,20 @@ WITH quarto_tipo_avg AS (
     WHERE intervencaoquarto.nrquarto IN (SELECT nrquarto FROM quartos) AND intervencaoquarto.dataintervencao >= add_months(sysdate, -6)
   GROUP BY limpeza.nrfuncionario, EXTRACT (MONTH FROM intervencaoquarto.dataintervencao)
     )
- SELECT * FROM count_limpeza
+
+
+SELECT
+    limpeza_count,
+    limpeza_month,
+    nrfuncionario
+FROM (
+    SELECT
+        limpeza_count,
+        limpeza_month,
+        nrfuncionario
+    FROM count_limpeza
+) JOIN (
+    SELECT
+        max(limpeza_count) AS mx_limpeza_count,
+        limpeza_month AS mx_limpeza_month
+    FROM count_limpeza group by limpeza_month) ON limpeza_count = mx_limpeza_count AND limpeza_month = mx_limpeza_month
