@@ -30,7 +30,7 @@ WITH quarto_tipo_avg AS (
             INNER JOIN reserva ON quarto_reserva.reservaid = reserva.id
             WHERE (reserva.datafim-reserva.dataInicio)*60*24 > 
             (SELECT media FROM quarto_tipo_avg 
-            WHERE quarto.tipoquarto = quarto_tipo_avg.tipo)),
+            WHERE quarto.tipoquarto = quarto_tipo_avg.tipo) AND (reserva.estadoreservasigla = 'ativa' OR reserva.estadoreservasigla = 'finalizada')),
  count_limpeza AS(
     SELECT COUNT(intervencaoquartoid) as limpeza_Count, nrfuncionario, EXTRACT (MONTH FROM intervencaoquarto.dataintervencao) AS Limpeza_Month 
     FROM limpeza
