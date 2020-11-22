@@ -333,3 +333,10 @@ Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1021, 15010);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1016, 15012);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2056, 15013);
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(2051, 15014);
+
+/*
+
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(7600, 1008,DATE  '2020-11-21', 'Y'); 
+
+Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(250,7600,'Manutencao 4');
+*/ 
