@@ -33,8 +33,8 @@ DROP TABLE Quarto_Reserva;
 CREATE TABLE 	Pessoa (
 nif  		INTEGER    	    CONSTRAINT pkPessoa	PRIMARY KEY,
 nome    	VARCHAR(255) 	CONSTRAINT nnNome not null,
-email		VARCHAR(255) 	CONSTRAINT nnEmail not null,
-telefone	VARCHAR(255)	CONSTRAINT nnTelefone not null
+email		VARCHAR(255),
+telefone	VARCHAR(255)
 );
 
 CREATE TABLE cliente (
@@ -118,7 +118,7 @@ ALTER TABLE enderecos ADD CONSTRAINT fkConcelhoEnderecos FOREIGN KEY (idConcelho
 CREATE TABLE enderecos_pessoa (
     codPostal         INTEGER       CONSTRAINT nnCodPostalEnderecos_Pessoa NOT NULL,
     pessoaNif         INTEGER       CONSTRAINT nnPessoaNifEnderecos_Pessoa NOT NULL,   
-    nrPorta           INTEGER       CONSTRAINT nnNrPorta                   NOT NULL,
+    nrPorta           VARCHAR(20)       CONSTRAINT nnNrPorta                   NOT NULL,
     andar             varchar(20),
     CONSTRAINT pkEnderecos_Pessoa  PRIMARY KEY (codPostal, pessoaNif)
 );
@@ -158,7 +158,8 @@ ALTER TABLE manutencao ADD  CONSTRAINT    fkManutencaoIntervencaoQuarto FOREIGN 
 
 CREATE TABLE produtosFrigoBar (
     idProduto           INTEGER         CONSTRAINT pkProduto    PRIMARY KEY,             
-    descricao           VARCHAR(255)    CONSTRAINT nnDescricaoProduto  NOT NULL
+    descricao           VARCHAR(255)    CONSTRAINT nnDescricaoProduto  NOT NULL,
+    preco               float(10,2)     CONSTRAINT nnPrecoProduto  NOT NULL
 );
 
 CREATE TABLE consumosFrigobar (
@@ -183,13 +184,14 @@ ALTER TABLE consumosFrigobar  ADD  CONSTRAINT fkConsumosFrigobarCamareira       
 CREATE TABLE estadoReserva (
 
     sigla       varchar(50) CONSTRAINT pkEstadoReserva          PRIMARY KEY,
-    descricao   varchar(50) CONSTRAINT nnDescricaoEstadoReserva NOT NULL
+    descricao   varchar(255) CONSTRAINT nnDescricaoEstadoReserva NOT NULL
 );
 
 CREATE TABLE fatura (
 
     id          INTEGER CONSTRAINT pkFatura PRIMARY KEY,
-    valor       FLOAT   CONSTRAINT nnValor  NOT NULL
+    valor       FLOAT    CONSTRAINT nnValor NOT NULL
+    idReserva    INTEGER CONSTRAINT nnIdReserva NOT NULL 
 );
 
 CREATE TABLE Reserva (
@@ -205,9 +207,11 @@ CREATE TABLE Reserva (
     custoReserva       FLOAT   CONSTRAINT nnCustoReserva  NOT NULL,
     custoCancelamento       FLOAT   CONSTRAINT nnCustoCancelamento NOT NULL);
 
+
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaNrCliente  FOREIGN KEY (nrCliente) REFERENCES cliente(nrCliente);
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaNrContaConsumosReservas     FOREIGN KEY (nrContaConsumos)   REFERENCES contaConsumos(nrConta);
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaEstadoReservaSigla          FOREIGN KEY (EstadoReservaSigla)     REFERENCES EstadoReserva(Sigla);
+ALTER TABLE fatura ADD CONSTRAINT fkFaturaReserva   FOREIGN KEY (idReserva) REFERENCES reserva(id)
 
 CREATE TABLE EpocaAno (
 
@@ -222,8 +226,8 @@ Create Table MeioPagamento(
 );
 
 CREATE TABLE MeioPagamento_Fatura (
-    MeioPagamentoDescricao         varchar(30)   CONSTRAINT nnMeioPagamentoDescricao NOT NULL,
-    FaturaId         INTEGER       CONSTRAINT nnFaturaId NOT NULL,
+    meioPagamentoDescricao         varchar(30)   CONSTRAINT nnMeioPagamentoDescricao NOT NULL,
+    faturaId         INTEGER       CONSTRAINT nnFaturaId NOT NULL,
     CONSTRAINT pkMeioPagamento_Fatura  PRIMARY KEY (MeioPagamentoDescricao, FaturaId)
 );
 
@@ -231,9 +235,9 @@ ALTER TABLE MeioPagamento_Fatura ADD CONSTRAINT fkMeioPagamento_FaturaMeioPagame
 ALTER TABLE MeioPagamento_Fatura ADD CONSTRAINT fkMeioPagamento_FaturaFaturaId FOREIGN KEY (FaturaId) REFERENCES fatura(id);
 
 CREATE TABLE PrecoReserva (
-    TipoQuartoId       INTEGER CONSTRAINT nnTipoQuartoId NOT NULL,
-    EpocaAnoId         INTEGER CONSTRAINT nnEpocaAnoId NOT NULL,
-    PrecoReserva       FLOAT   CONSTRAINT nnPrecoReserva NOT NULL,
+    tipoQuartoId       INTEGER CONSTRAINT nnTipoQuartoId NOT NULL,
+    epocaAnoId         INTEGER CONSTRAINT nnEpocaAnoId NOT NULL,
+    precoReserva       FLOAT(10,2)   CONSTRAINT nnPrecoReserva NOT NULL,
     CONSTRAINT pkPrecoReserva  PRIMARY KEY (TipoQuartoId, PrecoReserva)
 );
 ALTER TABLE PrecoReserva ADD CONSTRAINT fkPrecoReservaTipoQuartoId  FOREIGN KEY (TipoQuartoId) REFERENCES TipoQuarto(idTipoQuarto);
@@ -241,7 +245,7 @@ ALTER TABLE PrecoReserva ADD CONSTRAINT fkPrecoReservaEpocaAnoId FOREIGN KEY (Ep
 
 CREATE TABLE Quarto_Reserva (
     nrQuartoReserva       INTEGER CONSTRAINT nnnrQuartoReserva NOT NULL,
-    ReservaId         INTEGER CONSTRAINT nnReservaId NOT NULL,
+    reservaId         INTEGER CONSTRAINT nnReservaId NOT NULL,
     CONSTRAINT pkPrecoQuarto_Reserva  PRIMARY KEY (nrQuartoReserva, ReservaId)
 );
 ALTER TABLE Quarto_Reserva ADD CONSTRAINT fkQuarto_ReservanrQuartoReserva FOREIGN KEY (nrQuartoReserva) REFERENCES Quarto(nrQuarto);
