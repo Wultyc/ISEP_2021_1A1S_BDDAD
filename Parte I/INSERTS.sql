@@ -157,12 +157,23 @@ Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(2
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(3500, 1003, '2020-11-16', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(4500, 1004, '2020-11-17', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(5500, 1005, '2020-11-15', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(24000, 1016, DATE  '2020-11-15', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(24000, 1016, DATE  '2020-11-15', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(26000, 1016, DATE  '2020-09-12', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(27000, 1016, DATE  '2020-09-12', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(28000, 1016, DATE  '2020-03-12', 'Y');
 
 Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(250,1500,'Manutencao 1');
 Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(450,2500,'Manutencao 2');
 
-Insert into Limpeza (nrFuncionario, intervencaoQuartoId) values(150,3500);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(150,3500);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,24000);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,4500);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,24000);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,26000);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,27000);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,28000);
+
 
 Insert into concelho (idConcelho ,nome,distrito) values(1200,'Concelho 1', 'Porto');
 Insert into concelho (idConcelho ,nome,distrito) values(2200,'Concelho 1', 'Guarda');
