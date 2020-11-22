@@ -159,7 +159,7 @@ ALTER TABLE manutencao ADD  CONSTRAINT    fkManutencaoIntervencaoQuarto FOREIGN 
 CREATE TABLE produtosFrigoBar (
     idProduto           INTEGER         CONSTRAINT pkProduto    PRIMARY KEY,             
     descricao           VARCHAR(255)    CONSTRAINT nnDescricaoProduto  NOT NULL,
-    preco               float(10,2)     CONSTRAINT nnPrecoProduto  NOT NULL
+    preco               float(2)     CONSTRAINT nnPrecoProduto  NOT NULL
 );
 
 CREATE TABLE consumosFrigobar (
@@ -190,7 +190,7 @@ CREATE TABLE estadoReserva (
 CREATE TABLE fatura (
 
     id          INTEGER CONSTRAINT pkFatura PRIMARY KEY,
-    valor       FLOAT    CONSTRAINT nnValor NOT NULL
+    valor       FLOAT(2)    CONSTRAINT nnValor NOT NULL,
     idReserva    INTEGER CONSTRAINT nnIdReserva NOT NULL 
 );
 
@@ -211,7 +211,7 @@ CREATE TABLE Reserva (
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaNrCliente  FOREIGN KEY (nrCliente) REFERENCES cliente(nrCliente);
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaNrContaConsumosReservas     FOREIGN KEY (nrContaConsumos)   REFERENCES contaConsumos(nrConta);
 ALTER TABLE Reserva  ADD  CONSTRAINT fkReservaEstadoReservaSigla          FOREIGN KEY (EstadoReservaSigla)     REFERENCES EstadoReserva(Sigla);
-ALTER TABLE fatura ADD CONSTRAINT fkFaturaReserva   FOREIGN KEY (idReserva) REFERENCES reserva(id)
+ALTER TABLE fatura ADD CONSTRAINT fkFaturaReserva   FOREIGN KEY (idReserva) REFERENCES reserva(id);
 
 CREATE TABLE EpocaAno (
 
@@ -237,7 +237,7 @@ ALTER TABLE MeioPagamento_Fatura ADD CONSTRAINT fkMeioPagamento_FaturaFaturaId F
 CREATE TABLE PrecoReserva (
     tipoQuartoId       INTEGER CONSTRAINT nnTipoQuartoId NOT NULL,
     epocaAnoId         INTEGER CONSTRAINT nnEpocaAnoId NOT NULL,
-    precoReserva       FLOAT(10,2)   CONSTRAINT nnPrecoReserva NOT NULL,
+    precoReserva       FLOAT(2)   CONSTRAINT nnPrecoReserva NOT NULL,
     CONSTRAINT pkPrecoReserva  PRIMARY KEY (TipoQuartoId, PrecoReserva)
 );
 ALTER TABLE PrecoReserva ADD CONSTRAINT fkPrecoReservaTipoQuartoId  FOREIGN KEY (TipoQuartoId) REFERENCES TipoQuarto(idTipoQuarto);

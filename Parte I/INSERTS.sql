@@ -158,7 +158,7 @@ Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(3
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(4500, 1004, '2020-11-17', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(5500, 1005, '2020-11-15', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(24000, 1016, '2020-11-15', 'Y');
-Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(24000, 1016, '2020-11-15', 'Y');
+Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(25000, 1016, '2020-11-15', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(26000, 1016, '2020-09-12', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(27000, 1016, '2020-09-12', 'Y');
 Insert into IntervencaoQuarto(id, nrQuarto, dataIntervencao, concluido) values(28000, 1016, '2020-03-12', 'Y');
@@ -169,7 +169,7 @@ Insert into Manutencao (nrFuncionario, intervencaoQuartoId ,descricao) values(45
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(150,3500);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,24000);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,4500);
-Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,24000);
+Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,25000);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,26000);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,27000);
 Insert into Limpeza (nrFuncionario, intervencaoQuartoId ) values(350,28000);
@@ -186,17 +186,17 @@ Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(3300,'Rua
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4420,'Largo Pereira','Localidade do Cosme',1200);
 Insert into enderecos (codPostal,nomeRua,localidade,idConcelho) values(4425,'Largo Souto','Localidade do Mar',1200);
 
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 10, 107, 1);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 20, 207, 2);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 140, 307, 3);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 150, 107, 1);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 160, 207, 2);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 30, 307, 3);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 10, 107, 1);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 20, 207, 2);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 30, 307, 3);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4425, 170, 23, 0);
-Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4420, 240, 23, 0);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 10, '107', 1);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 20, '207', 2);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(1300, 140, '307', 3);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 150, '107', 1);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 160, '207', 2);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(2300, 30, '307', 3);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 10, '107', 1);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 20, '207', 2);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(3300, 30, '307', 3);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4425, 170, '23', 0);
+Insert into enderecos_pessoa (codPostal,pessoaNif,nrPorta,andar) values(4420, 240, '23', 0);
 
 
 Insert into epocaAno(id, descricao, dataInicio, dataFim) values(10001, 'Epoca Baixa','2019-11-01','2020-03-31');
@@ -219,32 +219,32 @@ Insert into contaConsumos(nrConta, dataAbertura, valor) values(11014, '2018-07-0
 Insert into contaConsumos(nrConta, dataAbertura, valor) values(11015, '2018-07-05', 13400);
 Insert into contaConsumos(nrConta, dataAbertura, valor) values(11016, '2018-07-06', 13500);
 
-Insert into produtosFrigoBar (idProduto,descricao) values(51000,'Sumo Laranja');
-Insert into produtosFrigoBar (idProduto,descricao) values(52000,'Sumo Toranja');
-Insert into produtosFrigoBar (idProduto,descricao) values(53000,'Sumo Morango');
-Insert into produtosFrigoBar (idProduto,descricao) values(54000,'Sumo Maca');
-Insert into produtosFrigoBar (idProduto,descricao) values(55000,'Sumo Tomate');
-Insert into produtosFrigoBar (idProduto,descricao) values(56000,'Sum Uva');
-Insert into produtosFrigoBar (idProduto,descricao) values(57000,'Sumo Pera');
-Insert into produtosFrigoBar (idProduto,descricao) values(58000,'Sumol');
-Insert into produtosFrigoBar (idProduto,descricao) values(59000,'Frisumo');
-Insert into produtosFrigoBar (idProduto,descricao) values(61000,'Sumo Diospiro');
-Insert into produtosFrigoBar (idProduto,descricao) values(62000,'Bolacha');
-Insert into produtosFrigoBar (idProduto,descricao) values(63000,'Gelado');
-Insert into produtosFrigoBar (idProduto,descricao) values(64000,'Kitkat');
-Insert into produtosFrigoBar (idProduto,descricao) values(65000,'Tarte');
-Insert into produtosFrigoBar (idProduto,descricao) values(66000,'Kinder Bueno');
-Insert into produtosFrigoBar (idProduto,descricao) values(67000,'Kinder Delice');
-Insert into produtosFrigoBar (idProduto,descricao) values(68000,'Ovo Kinder');
-Insert into produtosFrigoBar (idProduto,descricao) values(69000,'Sumo Kinder');
-Insert into produtosFrigoBar (idProduto,descricao) values(71000,'Ovos moles');
-Insert into produtosFrigoBar (idProduto,descricao) values(72000,'Caviar');
-Insert into produtosFrigoBar (idProduto,descricao) values(73000,'Cheetos');
-Insert into produtosFrigoBar (idProduto,descricao) values(74000,'Twix');
-Insert into produtosFrigoBar (idProduto,descricao) values(75000,'Milka');
-Insert into produtosFrigoBar (idProduto,descricao) values(76000,'Gambas');
-Insert into produtosFrigoBar (idProduto,descricao) values(77000,'Chamucas');
-Insert into produtosFrigoBar (idProduto,descricao) values(78000,'Rissois');
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(51000,'Sumo Laranja', 1.40);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(52000,'Sumo Toranja', 1.40);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(53000,'Sumo Morango', 1.40);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(54000,'Sumo Maca', 1.40);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(55000,'Sumo Tomate', 1.50);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(56000,'Sum Uva', 1.50);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(57000,'Sumo Pera', 1.40);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(58000,'Sumol', 2);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(59000,'Frisumo', 2);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(61000,'Sumo Diospiro', 4);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(62000,'Bolacha', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(63000,'Gelado', 2);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(64000,'Kitkat', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(65000,'Tarte', 5);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(66000,'Kinder Bueno', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(67000,'Kinder Delice', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(68000,'Ovo Kinder', 2);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(69000,'Sumo Kinder', 7);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(71000,'Ovos moles', 3);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(72000,'Caviar', 20);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(73000,'Cheetos', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(74000,'Twix', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(75000,'Milka', 1.50);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(76000,'Gambas', 10);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(77000,'Chamucas', 1);
+Insert into produtosFrigoBar (idProduto,descricao, preco) values(78000,'Rissois', 1);
 
 
 Insert into consumosFrigobar (idProdutoFrigobar,nrContaConsumos ,dataRegisto,nrFuncionario) values(51000,11001, '2020-08-06', 150);
@@ -300,22 +300,22 @@ Insert into MeioPagamento( descricao) values ('Pagamento por Dinheiro');
 Insert into MeioPagamento( descricao) values ('Pagamento por Cartao');
 Insert into MeioPagamento( descricao) values ('Pagamento por MBway');
 
-Insert into fatura(id, valor) values(80001, 1500);
-Insert into fatura(id, valor) values(80002, 2500);
-Insert into fatura(id, valor) values(80003, 3500);
+Insert into fatura(id, valor, idReserva) values(80001, 1500,15001);
+Insert into fatura(id, valor, idReserva) values(80002, 2500,15002);
+Insert into fatura(id, valor, idReserva) values(80003, 3500,15003);
 
 Insert into MeioPagamento_Fatura ( MeioPagamentoDescricao,FaturaId) values('Pagamento por Dinheiro', 80001);
 Insert into MeioPagamento_Fatura ( MeioPagamentoDescricao,FaturaId) values('Pagamento por Cartao', 80002);
 Insert into MeioPagamento_Fatura ( MeioPagamentoDescricao,FaturaId) values('Pagamento por MBway', 80003);
 
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 10001, 500);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 10001, 600);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 10001, 700);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (2, 10001, 600);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 10001, 700);
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 20001, 1500);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 20001, 1600);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 20001, 1700);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3500);
-Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3600);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (2, 20001, 1600);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 20001, 1700);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (1, 30001, 3500);
+Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (2, 30001, 3600);
 Insert into PrecoReserva (TipoQuartoId ,EpocaAnoId, PrecoReserva) values (3, 30001, 3700);
 
 Insert into Quarto_Reserva (nrQuartoReserva,ReservaId) values(1030, 15001);
