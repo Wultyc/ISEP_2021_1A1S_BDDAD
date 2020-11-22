@@ -1,13 +1,11 @@
 WITH produtos_mais_consumidos AS (
     SELECT
-        produtosFrigoBar.idProduto,
+        consumosFrigobar.idProdutoFrigobar,
         count(*) as cnt
     FROM consumosFrigobar
-        JOIN produtosFrigoBar
-            ON produtosFrigoBar.idProduto = consumosFrigobar.idProdutoFrigobar
     WHERE consumosFrigobar.dataRegisto > (select sysdate -365*2 from dual)
-    GROUP BY produtosFrigoBar.idProduto
-    ORDER BY cnt
+    GROUP BY consumosFrigobar.idProdutoFrigobar
+    ORDER BY cnt DESC
     FETCH FIRST 2 ROWS ONLY
 )
 
@@ -55,5 +53,5 @@ WHERE   quarto.tipoQuarto = (SELECT idTipoQuarto FROM TipoQuarto WHERE descricao
             
             )
         )
-    AND ConsumosFrigobar.idProdutoFrigobar IN (SELECT IDPRODUTO FROM produtos_mais_consumidos)
+    AND ConsumosFrigobar.idProdutoFrigobar IN (SELECT IDPRODUTOFRIGOBAR FROM produtos_mais_consumidos)
 ORDER BY ContaConsumos.VALOR DESC;
