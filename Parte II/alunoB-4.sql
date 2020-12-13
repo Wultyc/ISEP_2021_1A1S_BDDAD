@@ -20,7 +20,7 @@ IS
             JOIN artigo_consumo ON linha_conta_consumo.id_artigo_consumo = artigo_consumo.id
         WHERE
             extract(year from linha_conta_consumo.DATA_REGISTO) = cp_ano AND
-    extract(month from linha_conta_consumo.DATA_REGISTO) = cp_mes
+            extract(month from linha_conta_consumo.DATA_REGISTO) = cp_mes
         GROUP BY funcionario.id, funcionario.nome;
     
     mes_invalido EXCEPTION;
@@ -34,7 +34,7 @@ BEGIN
     END IF;
     
     IF p_ano IS NULL THEN
-        select extract(year from sysdate) INTO v_ano from dual; 
+        select extract(year from sysdate)-1 INTO v_ano from dual; 
     ELSE
         v_ano := p_ano;
     END IF;
