@@ -23,7 +23,7 @@ SET SERVEROUTPUT ON
 -- apresentar as uas soluções.
 
 -- Solução 1 - sem a função do EX 4
-create or replace procedure prcAtualizarBonusCamareiras (p_mes IN INT, p_ano IN INT DEFAULT NULL) 
+CREATE OR REPLACE PROCEDURE prcAtualizarBonusCamareiras (p_mes IN INT, p_ano IN INT DEFAULT NULL) 
 
 IS
     v_mes INT;
@@ -163,7 +163,7 @@ BEGIN
         SELECT count(*) INTO v_conta_registo_bonus_mes
         FROM bonus
         WHERE
-            id_funcionario = v_id AND
+            id_camareira = v_id AND
             mes = v_mes AND
             ano = v_ano;
         
@@ -172,12 +172,12 @@ BEGIN
             UPDATE bonus
                 SET bonus = v_bonus
             WHERE
-                id_funcionario = v_id AND
+                id_camareira = v_id AND
                 mes = v_mes AND
                 ano = v_ano;
         ELSE
             dbms_output.put_line('[INSERT] ID: ' || v_id || ' Mes: ' || v_mes || ' Ano: ' || v_ano);
-            INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (v_id, v_mes, v_ano, v_bonus);
+            INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (v_id, v_mes, v_ano, v_bonus);
         END IF;
         
     END LOOP; 

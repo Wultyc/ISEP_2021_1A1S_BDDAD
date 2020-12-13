@@ -22,7 +22,7 @@ BEGIN
     END IF;
     
     dbms_output.put_line('lol: ');
-    OPEN ultimo_bonus (:new.id_funcionario, v_mes, v_ano);
+    OPEN ultimo_bonus (:new.id_camareira, v_mes, v_ano);
     LOOP
         FETCH ultimo_bonus INTO v_ultimo_bonus;
         EXIT WHEN ultimo_bonus%notfound;
@@ -40,17 +40,17 @@ BEGIN
 END;
 /
 BEGIN
-    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (11,11,2020,8);
+    INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (11,11,2020,8);
 END;
 /
 BEGIN
-    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (12,11,2020,8);
+    INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (12,11,2020,8);
 END;
 /
 BEGIN
-    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (13,11,2020,5);
+    INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (13,11,2020,5);
 END;
 /
 BEGIN
-    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (14,11,2020,10);
+    INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (14,11,2020,10);
 END;
