@@ -1,10 +1,57 @@
-create or replace trigger trgCorrigirAlteracaoBonus
-    before insert or update on TABELA
-    for each row
-    declare
+SET SERVEROUTPUT ON 
 
-    begin
-    end;
+CREATE OR REPLACE TRIGGER trgCorrigirAlteracaoBonus
+    BEFORE INSERT OR UPDATE ON bonus
+    FOR EACH ROW
+DECLARE
+    CURSOR ultimo_bonus(cp_id bonus.id_funcionario%type, cp_mes bonus.mes%type, cp_ano bonus.ano%type) IS
+        SELECT * FROM bonus WHERE id_funcionario = cp_id AND mes = cp_mes AND ano = cp_ano;
+            
+    v_ultimo_bonus bonus%ROWTYPE;
     
+    v_mes bonus.mes%type;
+    v_ano bonus.ano%type;
+BEGIN
 
---teste
+    IF :new.mes = 1 THEN
+        v_mes := 12;
+        v_ano := :new.ano-1;
+    ELSE
+        v_mes := :new.mes;
+        v_ano := :new.ano;
+    END IF;
+    
+    dbms_output.put_line('lol: ');
+    OPEN ultimo_bonus (:new.id_funcionario, v_mes, v_ano);
+    LOOP
+        FETCH ultimo_bonus INTO v_ultimo_bonus;
+        EXIT WHEN ultimo_bonus%notfound;
+        dbms_output.put_line('ultimo: ' || v_ultimo_bonus.bonus || ' | novo: ' || :new.bonus);
+        IF v_ultimo_bonus.bonus > :new.bonus THEN
+            raise_application_error(-20000, 'Bonus não pode ser inferior ao do mês anterior');
+        END IF;
+        
+        dbms_output.put_line('ultimo: ' || v_ultimo_bonus.bonus || ' | novo: ' || :new.bonus || 'racio' || (:new.bonus-v_ultimo_bonus.bonus)/v_ultimo_bonus.bonus);
+        IF (:new.bonus-v_ultimo_bonus.bonus)/v_ultimo_bonus.bonus > 0.5 THEN
+            raise_application_error(-20000, 'Aumento não pode ser superior as 50% face o mês anterior');
+        END IF;
+        
+    END LOOP;
+    CLOSE ultimo_bonus;
+END;
+/
+BEGIN
+    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (11,11,2020,8);
+END;
+/
+BEGIN
+    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (12,11,2020,8);
+END;
+/
+BEGIN
+    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (13,11,2020,5);
+END;
+/
+BEGIN
+    INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (14,11,2020,10);
+END;
