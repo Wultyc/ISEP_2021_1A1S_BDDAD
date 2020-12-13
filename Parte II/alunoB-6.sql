@@ -4,8 +4,8 @@ CREATE OR REPLACE TRIGGER trgCorrigirAlteracaoBonus
     BEFORE INSERT OR UPDATE ON bonus
     FOR EACH ROW
 DECLARE
-    CURSOR ultimo_bonus(cp_id bonus.id_funcionario%type, cp_mes bonus.mes%type, cp_ano bonus.ano%type) IS
-        SELECT * FROM bonus WHERE id_funcionario = cp_id AND mes = cp_mes AND ano = cp_ano;
+    CURSOR ultimo_bonus(cp_id bonus.id_camareira%type, cp_mes bonus.mes%type, cp_ano bonus.ano%type) IS
+        SELECT * FROM bonus WHERE id_camareira = cp_id AND mes = cp_mes AND ano = cp_ano;
             
     v_ultimo_bonus bonus%ROWTYPE;
     
@@ -26,12 +26,11 @@ BEGIN
     LOOP
         FETCH ultimo_bonus INTO v_ultimo_bonus;
         EXIT WHEN ultimo_bonus%notfound;
-        dbms_output.put_line('ultimo: ' || v_ultimo_bonus.bonus || ' | novo: ' || :new.bonus);
+        
         IF v_ultimo_bonus.bonus > :new.bonus THEN
             raise_application_error(-20000, 'Bonus não pode ser inferior ao do mês anterior');
         END IF;
         
-        dbms_output.put_line('ultimo: ' || v_ultimo_bonus.bonus || ' | novo: ' || :new.bonus || 'racio' || (:new.bonus-v_ultimo_bonus.bonus)/v_ultimo_bonus.bonus);
         IF (:new.bonus-v_ultimo_bonus.bonus)/v_ultimo_bonus.bonus > 0.5 THEN
             raise_application_error(-20000, 'Aumento não pode ser superior as 50% face o mês anterior');
         END IF;
