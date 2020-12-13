@@ -89,7 +89,6 @@ BEGIN
                 mes = v_mes AND
                 ano = v_ano;
         ELSE
-             dbms_output.put_line('INSERT' || v_conta_registo_bonus_mes);
             INSERT INTO bonus (id_funcionario, mes, ano, bonus) VALUES (reg_camareira_mes.id, v_mes, v_ano, v_bonus);
         END IF;
         
