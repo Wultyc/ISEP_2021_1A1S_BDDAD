@@ -4,25 +4,21 @@ CREATE OR REPLACE TRIGGER trgCorrigirAlteracaoBonus
     BEFORE INSERT OR UPDATE ON bonus
     FOR EACH ROW
 DECLARE
-    CURSOR ultimo_bonus(cp_id bonus.id_camareira%type, cp_mes bonus.mes%type, cp_ano bonus.ano%type) IS
-        SELECT * FROM bonus WHERE id_camareira = cp_id AND mes = cp_mes AND ano = cp_ano;
+    CURSOR ultimo_bonus(cp_id bonus.id_camareira%type) IS
+        SELECT
+            *
+        FROM bonus
+        WHERE id_camareira = cp_id
+        ORDER BY to_date(ano||'-'||mes||'-01', 'yyyy-mm-dd') DESC
+        FETCH FIRST ROW ONLY;
             
     v_ultimo_bonus bonus%ROWTYPE;
     
     v_mes bonus.mes%type;
     v_ano bonus.ano%type;
 BEGIN
-
-    IF :new.mes = 1 THEN
-        v_mes := 12;
-        v_ano := :new.ano-1;
-    ELSE
-        v_mes := :new.mes;
-        v_ano := :new.ano;
-    END IF;
     
-    dbms_output.put_line('lol: ');
-    OPEN ultimo_bonus (:new.id_camareira, v_mes, v_ano);
+    OPEN ultimo_bonus (:new.id_camareira);
     LOOP
         FETCH ultimo_bonus INTO v_ultimo_bonus;
         EXIT WHEN ultimo_bonus%notfound;
