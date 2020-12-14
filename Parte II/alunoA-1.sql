@@ -34,13 +34,16 @@ is
 				CHECKIN 
 				JOIN reserva on checkin.id_reserva = reserva.id
 				WHERE
-				(reserva.DATA_ENTRADA < dataen AND dataen < reserva.DATA_SAIDA) 
-				OR (reserva.DATA_ENTRADA < datasa  AND datasa < reserva.DATA_SAIDA)
-				OR (reserva.data_entrada > dataen AND reserva.DATA_SAIDA < datasa))
-				AND quarto.id_tipo_quarto = tipoquartofiltro
-				GROUP By quarto.id, andar.nr_andar
-				ORDER BY andar.nr_andar asc, dias asc
-				FETCH FIRST ROW ONLY
+                        (reserva.DATA_ENTRADA < dataen AND dataen < reserva.DATA_SAIDA) 
+                    OR  (reserva.DATA_ENTRADA < datasa  AND datasa < reserva.DATA_SAIDA)
+                    OR  (reserva.data_entrada > dataen AND reserva.DATA_SAIDA < datasa)
+                    OR  reserva.id_estado_reserva = 4
+                    OR  reserva.id_estado_reserva = 5
+            )
+            AND quarto.id_tipo_quarto = tipoquartofiltro
+            GROUP By quarto.id, andar.nr_andar
+            ORDER BY andar.nr_andar asc, dias asc
+            FETCH FIRST ROW ONLY
        );
     BEGIN
     
