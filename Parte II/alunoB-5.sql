@@ -168,7 +168,6 @@ BEGIN
             ano = v_ano;
         
         IF v_conta_registo_bonus_mes > 0 THEN
-            dbms_output.put_line('[UPDATE] ID: ' || v_id || ' Mes: ' || v_mes || ' Ano: ' || v_ano);
             UPDATE bonus
                 SET bonus = v_bonus
             WHERE
@@ -176,7 +175,6 @@ BEGIN
                 mes = v_mes AND
                 ano = v_ano;
         ELSE
-            dbms_output.put_line('[INSERT] ID: ' || v_id || ' Mes: ' || v_mes || ' Ano: ' || v_ano);
             INSERT INTO bonus (id_camareira, mes, ano, bonus) VALUES (v_id, v_mes, v_ano, v_bonus);
         END IF;
         
@@ -189,32 +187,48 @@ EXCEPTION
 END;
 /
 -- Testes
+
+SELECT * FROM bonus;
+
 BEGIN
+    DECLARE
+        bonus_result SYS_REFCURSOR;
     BEGIN
         dbms_output.put_line('Mes: 3 | Ano: 2020');
         prcAtualizarBonusCamareiras(3,2020);
+        OPEN bonus_result FOR SELECT * FROM bonus WHERE mes = 3 AND ano = 2020;
+        DBMS_SQL.RETURN_RESULT(bonus_result);
     END;
     
+    DECLARE
+        bonus_result SYS_REFCURSOR;
     BEGIN
         dbms_output.put_line('Mes: 7 | Ano: 2020');
         prcAtualizarBonusCamareiras(7,2020);
+        OPEN bonus_result FOR SELECT * FROM bonus WHERE mes = 7 AND ano = 2020;
+        DBMS_SQL.RETURN_RESULT(bonus_result);
     END;
     
+    DECLARE
+        bonus_result SYS_REFCURSOR;
     BEGIN
         dbms_output.put_line('Mes: 9 | Ano: ');
         prcAtualizarBonusCamareiras(9);
+        OPEN bonus_result FOR SELECT * FROM bonus WHERE mes = 9 AND ano = 2020;
+        DBMS_SQL.RETURN_RESULT(bonus_result);
     END;
     
+    DECLARE
+        bonus_result SYS_REFCURSOR;
     BEGIN
         dbms_output.put_line('Mes: 10 | Ano: 2020');
         prcAtualizarBonusCamareiras(10,2020);
+        OPEN bonus_result FOR SELECT * FROM bonus WHERE mes = 10 AND ano = 2020;
+        DBMS_SQL.RETURN_RESULT(bonus_result);
     END;
     
-    BEGIN
-        dbms_output.put_line('Mes: 10 | Ano: 2020');
-        prcAtualizarBonusCamareiras(10,2020);
-    END;
-    
+    DECLARE
+        bonus_result SYS_REFCURSOR;
     BEGIN
         dbms_output.put_line('Mes: 92020 | Ano ');
         prcAtualizarBonusCamareiras(92020);
