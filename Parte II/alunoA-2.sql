@@ -1,3 +1,5 @@
+SET SERVEROUTPUT ON 
+
 --------------------PROCEDURE------------------------------------
 create or replace procedure prcCheckOut (linhaReserva reserva%ROWTYPE) 
 
@@ -76,13 +78,25 @@ BEGIN
     dbms_output.put_line('Parametro não pode ser nulo');
 
 END;
+/
+-- Lista de reservas sem quarto atribuido
+SELECT * FROM reserva WHERE id_estado_reserva = 2 ORDER BY data_entrada DESC;
 
-declare linha reserva%ROWTYPE;
+DELETE FROM checkout;
+
+declare
+    linha reserva%ROWTYPE;
 
 begin
-    select * into linha from reserva where id = 306;
+    select * into linha from reserva where id = 3276;
     prcCheckOut(linha);
 end;
+
+SELECT * FROM checkout WHERE id_reserva=3276;
+
+SELECT * FROM fatura WHERE id_reserva=3276;
+
+SELECT * FROM reserva WHERE id = 3276;
 
 select * from preco_epoca_tipo_quarto
 

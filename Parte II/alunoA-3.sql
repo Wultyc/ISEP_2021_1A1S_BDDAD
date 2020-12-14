@@ -1,3 +1,5 @@
+SET SERVEROUTPUT ON 
+
 create or replace trigger trgEpocasNaoSobrepostas
     before insert or update on EPOCA
     for each row
@@ -21,10 +23,13 @@ create or replace trigger trgEpocasNaoSobrepostas
     EXIT WHEN datas%notfound;  
     END LOOP;
     close datas;
-    end;
+end;
     
-SELECT DATA_INI, DATA_FIM FROM EPOCA
-insert into epoca(id, nome, data_ini, data_fim) values(10, 'Época 9', to_date('2020-01-01', 'yyyy-mm-dd'), to_date('2020-03-31', 'yyyy-mm-dd'));
+SELECT DATA_INI, DATA_FIM FROM EPOCA;
+
+insert into epoca(id, nome, data_ini, data_fim) values(10, 'Época 9', to_date('2020-12-12', 'yyyy-mm-dd'), to_date('2021-04-30', 'yyyy-mm-dd'));
+
+insert into epoca(id, nome, data_ini, data_fim) values(13, 'Época X', to_date('2021-01-31', 'yyyy-mm-dd'), to_date('2021-04-30', 'yyyy-mm-dd'));
     
 
 

@@ -1,3 +1,5 @@
+SET SERVEROUTPUT ON 
+
 CREATE OR REPLACE FUNCTION fncGetQuartoReserva (idreserva reserva.id%type) return quarto%rowtype
 is
     dataEntrada date;
@@ -74,16 +76,23 @@ is
         WHEN no_data_found THEN
          dbms_output.put_line(ex_tracker);
          return null;    
-    END;
+END;
     
-    select * from reserva where reserva.id = 200
-    
-    declare 
-    resultado quarto%rowtype := fncGetQuartoReserva(108);
-    begin
-     dbms_output.put_line(resultado.id);
-    end;
-    
-    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(22,1,22,3,2)
-    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(23,1,23,3,2)
-    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(24,1,24,1,2)
+-- Lista de reservas sem quarto atribuido
+SELECT * FROM reserva WHERE reserva.id not in (select checkin.id_reserva from checkin ) AND id_estado_reserva=1 ORDER BY data_entrada DESC;
+
+-- determinação de quarto disponivel para reserva selecionada no passo atras
+
+declare 
+    resultado quarto%rowtype;
+begin
+    resultado := fncGetQuartoReserva(3629);
+    dbms_output.put_line('quarto.id: ' || resultado.id);
+end;
+
+-- valores para complementar a info ja existente na DB
+BEGIN
+    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(22,1,22,3,2);
+    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(23,1,23,3,2);
+    INSERT into quarto (id, id_andar, nr_quarto, id_tipo_quarto, lotacao_maxima) values(24,1,24,1,2);
+END;
