@@ -12,15 +12,15 @@ create or replace trigger trgEpocasNaoSobrepostas
     open datas;
     LOOP
     FETCH datas into d_data_ini, d_data_fim;
+    EXIT WHEN datas%notfound;
     if ( (:new.DATA_INI > d_data_ini AND :new.DATA_INI < d_data_fim) OR
     (:new.DATA_INI < d_data_ini AND :new.DATA_FIM > d_data_fim) OR
     (:new.DATA_INI > d_data_ini AND :new.DATA_FIM < d_data_fim) OR
     (:new.DATA_FIM > d_data_ini AND :new.DATA_FIM < d_data_fim) OR
     (:new.DATA_INI = d_data_ini AND :new.DATA_FIM = d_data_fim)
     ) then
-        raise_application_error(-20000,'SOBREPOSIÇÂO DE DATAS - ESCOLHA DATAS QUE NÂO SE SOBREPONHAM A OUTRAS DATAS');
-    end if;
-    EXIT WHEN datas%notfound;  
+        raise_application_error(-20000,'DATAS INVALIDAS');
+    end if;  
     END LOOP;
     close datas;
 end;
