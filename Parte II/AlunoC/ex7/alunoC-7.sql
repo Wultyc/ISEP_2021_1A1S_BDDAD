@@ -34,3 +34,6 @@ resultado boolean;
 begin
     resultado := fncDisponibilidadeReserva(1, to_date('11/01/2020', 'dd/mm/yyyy'), 1, 1);
 end;
+
+
+/* A função isQuartoIndisponivel, por alguma razao, ou apenas retorna todos os quartos disponiveis ou todos não disponiveis, não fui capaz de descobrir a razão pela qual este evento aconteceu-
