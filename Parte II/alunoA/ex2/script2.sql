@@ -79,6 +79,11 @@ BEGIN
 
 END;
 /
+-- primeiro será necessário apagar checkouts entre outros para não haver sobreposição de valores
+delete from checkout;
+delete from linha_fatura;
+delete from fatura;
+
 -- Lista de reservas sem quarto atribuido
 SELECT * FROM reserva WHERE id_estado_reserva = 2 ORDER BY data_entrada DESC;
 
@@ -86,7 +91,6 @@ DELETE FROM checkout;
 
 declare
     linha reserva%ROWTYPE;
-
 begin
     select * into linha from reserva where id = 3276;
     prcCheckOut(linha);
@@ -98,19 +102,5 @@ SELECT * FROM fatura WHERE id_reserva=3276;
 
 SELECT * FROM reserva WHERE id = 3276;
 
-select * from preco_epoca_tipo_quarto
-
-
-delete from checkout;
-delete from linha_fatura;
-delete from fatura;
-
-
-select * from conta_consumo where id_reserva = 306
-select * from linha_conta_consumo where id_conta_consumo = 306
-select * from linha_fatura;
-select * from linha_conta_consumo where id_conta_consumo = 196;
-select * from fatura where id_reserva = 306;
-select * from reserva where id = 306;
-
+select * from preco_epoca_tipo_quarto;
 
