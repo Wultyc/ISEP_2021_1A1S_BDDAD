@@ -3,25 +3,44 @@ SET SERVEROUTPUT ON
 CREATE OR REPLACE TRIGGER trgCorrigirAlteracaoBonus
     BEFORE INSERT OR UPDATE ON bonus
     FOR EACH ROW
-DECLARE
-    CURSOR ultimo_bonus(cp_id bonus.id_camareira%type) IS
-        SELECT
-            *
-        FROM bonus
-        WHERE id_camareira = cp_id
-        ORDER BY to_date(ano||'-'||mes||'-01', 'yyyy-mm-dd') DESC
-        FETCH FIRST ROW ONLY;
+DECLARE        
+    v_query_cursor SYS_REFCURSOR;
             
     v_ultimo_bonus bonus%ROWTYPE;
     
     v_mes bonus.mes%type;
     v_ano bonus.ano%type;
 BEGIN
+    IF :new.mes = 1 THEN
+        v_mes := 12;
+        v_ano := :new.ano-1;
+    ELSE
+        v_mes := :new.mes;
+        v_ano := :new.ano;
+    END IF;
     
-    OPEN ultimo_bonus (:new.id_camareira);
+    OPEN v_query_cursor FOR
+        SELECT
+            *
+        FROM bonus
+        WHERE   id_camareira = :new.id_camareira
+            AND mes = v_mes
+            AND ano = v_ano;
+     
+    IF v_query_cursor%ROWCOUNT < 1 THEN
+        CLOSE v_query_cursor;
+        OPEN v_query_cursor FOR
+            SELECT
+                *
+            FROM bonus
+            WHERE id_camareira = :new.id_camareira
+            ORDER BY to_date(ano||'-'||mes||'-01', 'yyyy-mm-dd') DESC
+            FETCH FIRST ROW ONLY;
+    END IF;
+    
     LOOP
-        FETCH ultimo_bonus INTO v_ultimo_bonus;
-        EXIT WHEN ultimo_bonus%notfound;
+        FETCH v_query_cursor INTO v_ultimo_bonus;
+        EXIT WHEN v_query_cursor%notfound;
         
         IF v_ultimo_bonus.bonus > :new.bonus THEN
             raise_application_error(-20000, 'Bonus não pode ser inferior ao do mês anterior');
@@ -32,7 +51,7 @@ BEGIN
         END IF;
         
     END LOOP;
-    CLOSE ultimo_bonus;
+    CLOSE v_query_cursor;
 END;
 /
 BEGIN
